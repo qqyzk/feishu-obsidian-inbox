@@ -43,11 +43,19 @@ cd /Users/white/Documents/Projects/feishu-obsidian-inbox/python-sync
 PYTHONPATH=src python3 -m feishu_obsidian_inbox sync --dry-run
 ```
 
+`obsidian-plugin/` 已经有第一版 TypeScript MVP：
+
+- 可以构建为 Obsidian 插件。
+- 提供侧边栏同步按钮和命令面板命令。
+- 提供设置页。
+- 直接请求飞书开放平台 API，不依赖 Python。
+- 复刻 Python 版的去重、过滤和 Markdown 输出逻辑。
+
 ## Obsidian 插件方向
 
-下一版计划重写为 TypeScript Obsidian 插件，而不是调用 Python 脚本。插件本身可以公开发布，但每个用户需要创建自己的飞书 / Lark 自建应用和 Bot，并在插件设置里填写自己的凭证。
+插件本身可以公开发布，但每个用户需要创建自己的飞书 / Lark 自建应用和 Bot，并在插件设置里填写自己的凭证。
 
-计划能力：
+当前能力：
 
 - 侧边栏同步按钮。
 - 命令面板命令：`Sync Feishu Inbox`。

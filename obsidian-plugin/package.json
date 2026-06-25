@@ -1,0 +1,25 @@
+{
+  "name": "feishu-obsidian-inbox",
+  "version": "0.1.0",
+  "description": "Sync Feishu / Lark group messages into an Obsidian inbox note.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production"
+  },
+  "keywords": [
+    "obsidian",
+    "feishu",
+    "lark",
+    "inbox"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "builtin-modules": "^5.0.0",
+    "esbuild": "^0.27.0",
+    "obsidian": "^1.9.0",
+    "typescript": "^5.9.0"
+  }
+}
