@@ -2,7 +2,9 @@
 
 Sync Feishu / Lark group messages into an Obsidian inbox note.
 
-This is the TypeScript Obsidian plugin version. It is intended to become the user-facing, publishable implementation.
+This is the TypeScript Obsidian plugin version. It is intended to become the user-facing implementation.
+
+It is currently a beta/manual-install plugin and is not yet listed in the official Obsidian community plugin directory.
 
 ## Features
 
@@ -21,7 +23,17 @@ npm install
 npm run build
 ```
 
-The build creates `main.js`, which is ignored by git. For local manual installation, copy these files into your vault plugin folder:
+The build creates `main.js`, which is ignored by git.
+
+Prepare release assets:
+
+```bash
+npm run prepare-release
+```
+
+This writes release files to `dist/`.
+
+For local manual installation, copy these files into your vault plugin folder:
 
 ```text
 manifest.json
@@ -42,3 +54,7 @@ styles.css
 - `Recent message limit`
 
 Each user should create their own Feishu / Lark custom app and bot. The plugin should never ship with shared credentials.
+
+## Privacy
+
+The App Secret is stored in the plugin's local `data.json` under your vault's `.obsidian/plugins/feishu-obsidian-inbox/` folder. Do not publish or sync that file to untrusted places.

@@ -56,3 +56,22 @@ im:message.group_msg
 7. Use the plugin settings to fill App ID, App Secret, and Chat ID.
 
 If Feishu returns `need scope: im:message.group_msg`, add `im:message.group_msg` and publish the app again.
+
+## Plugin Settings
+
+After the app is published and the bot is added to the target group, fill these fields in Obsidian:
+
+```text
+Feishu App ID
+Feishu App Secret
+Chat ID
+Target file
+```
+
+`Target file` is vault-relative, for example:
+
+```text
+Interface/飞书临时记录.md
+```
+
+The plugin writes only to this target file and stores sync state in local plugin data.

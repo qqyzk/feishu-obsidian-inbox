@@ -1,66 +1,132 @@
 # Feishu Obsidian Inbox
 
-把飞书 / Lark 群里的手机临时记录同步到 Obsidian inbox 文件。
+Sync quick notes from a Feishu / Lark group chat into an Obsidian inbox note.
 
-这个仓库现在分成两条实现线：
-
-```text
-python-sync/       已跑通的 Python CLI 版本，作为第一版和参考实现
-obsidian-plugin/   准备开发的 Obsidian 插件版本，目标是可发布
-docs/              飞书应用/Bot 配置教程和设计文档
-```
-
-## 当前状态
-
-`python-sync/` 已经能完成端到端同步：
+The intended workflow is simple:
 
 ```text
-iPhone 飞书群发消息
-→ Mac 脚本请求飞书开放平台 API
-→ 追加到 Obsidian 临时记录文件
-→ 记录同步状态，避免重复追加
+iPhone sends temporary notes to a Feishu / Lark group
+→ Obsidian plugin or Python CLI fetches new messages
+→ New records are appended to an Obsidian Markdown file
+→ Obsidian / AI tools can triage the inbox later
 ```
 
-目标 Obsidian 文件：
+## Status
+
+This repository currently contains two implementations:
 
 ```text
-/Users/white/Documents/Obsidian Vault/Interface/飞书临时记录.md
+obsidian-plugin/   TypeScript Obsidian plugin MVP
+python-sync/       Working Python CLI reference implementation
+docs/              Feishu / Lark setup notes
 ```
 
-## 日常同步
+The Python version has been tested end to end. The Obsidian plugin MVP has also been built and tested locally, but it is not yet listed in the official Obsidian community plugin directory.
 
-当前可用版本仍是 Python CLI：
+## Obsidian Plugin
+
+Features:
+
+- Manual sync from a ribbon icon.
+- Command palette command: `Sync Feishu Inbox`.
+- Dry-run command: `Dry-run Feishu Inbox Sync`.
+- Settings page for Feishu / Lark credentials, chat ID, target file, and sync retention.
+- Direct Feishu / Lark Open Platform API calls. Python is not required.
+- Duplicate prevention with bounded local state.
+- System messages are filtered by default.
+
+Build:
 
 ```bash
-cd /Users/white/Documents/Projects/feishu-obsidian-inbox/python-sync
-PYTHONPATH=src python3 -m feishu_obsidian_inbox sync
+cd obsidian-plugin
+npm install
+npm run build
 ```
 
-预览但不写入：
+Manual installation for testing:
+
+1. Build the plugin.
+2. Create this folder in your vault:
+
+```text
+.obsidian/plugins/feishu-obsidian-inbox/
+```
+
+3. Copy these files into that folder:
+
+```text
+obsidian-plugin/manifest.json
+obsidian-plugin/main.js
+obsidian-plugin/styles.css
+```
+
+4. Restart Obsidian and enable `Feishu Obsidian Inbox` in Community plugins.
+
+## Feishu / Lark Setup
+
+Each user must create their own Feishu / Lark custom app and bot. This project never ships shared credentials.
+
+Required scopes:
+
+```text
+im:chat
+im:message:readonly
+im:message.group_msg
+```
+
+The bot must be added to the target group chat. See [docs/feishu-setup.md](docs/feishu-setup.md).
+
+## Python CLI
+
+The Python implementation is kept as a working reference and fallback.
+
+Configure it from the example file:
 
 ```bash
-cd /Users/white/Documents/Projects/feishu-obsidian-inbox/python-sync
+cd python-sync
+cp .env.example .env
+```
+
+Then fill:
+
+```env
+FEISHU_APP_ID=
+FEISHU_APP_SECRET=
+FEISHU_CHAT_ID=
+OBSIDIAN_TARGET_FILE=
+```
+
+Run a dry-run:
+
+```bash
 PYTHONPATH=src python3 -m feishu_obsidian_inbox sync --dry-run
 ```
 
-`obsidian-plugin/` 已经有第一版 TypeScript MVP：
+Run a real sync:
 
-- 可以构建为 Obsidian 插件。
-- 提供侧边栏同步按钮和命令面板命令。
-- 提供设置页。
-- 直接请求飞书开放平台 API，不依赖 Python。
-- 复刻 Python 版的去重、过滤和 Markdown 输出逻辑。
+```bash
+PYTHONPATH=src python3 -m feishu_obsidian_inbox sync
+```
 
-## Obsidian 插件方向
+## Privacy
 
-插件本身可以公开发布，但每个用户需要创建自己的飞书 / Lark 自建应用和 Bot，并在插件设置里填写自己的凭证。
+Secrets are local configuration and must not be committed:
 
-当前能力：
+- `python-sync/.env`
+- Obsidian plugin `data.json`
 
-- 侧边栏同步按钮。
-- 命令面板命令：`Sync Feishu Inbox`。
-- 设置页填写 App ID、App Secret、Chat ID、目标文件路径。
-- 同步状态保存在插件本地数据中，只保留最近有限数量的消息 ID。
-- 默认过滤系统消息，避免把建群、邀请 Bot 等事件写入 inbox。
+The repository includes `.env.example` so other users can reproduce the setup without exposing private credentials.
 
-飞书配置教程会放在 [docs/feishu-setup.md](docs/feishu-setup.md)。
+The sync state stores only bounded metadata such as recent message IDs and the latest processed message timestamp.
+
+## Release Notes
+
+For a beta release, upload the built Obsidian plugin assets:
+
+```text
+manifest.json
+main.js
+styles.css
+```
+
+Official Obsidian community plugin submission should happen after the plugin has had some beta testing.

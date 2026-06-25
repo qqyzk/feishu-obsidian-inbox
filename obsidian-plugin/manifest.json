@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "minAppVersion": "1.5.0",
   "description": "Sync Feishu / Lark group messages into an Obsidian inbox note.",
-  "author": "",
-  "authorUrl": "",
+  "author": "qqyzk",
+  "authorUrl": "https://github.com/qqyzk",
   "isDesktopOnly": false
 }
