@@ -1,0 +1,12 @@
+.env
+python-sync/.env
+.venv/
+python-sync/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+python-sync/data/*.json
+!python-sync/data/.gitkeep
+obsidian-plugin/node_modules/
+obsidian-plugin/main.js
+obsidian-plugin/styles.css
