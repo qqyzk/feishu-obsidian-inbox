@@ -66,6 +66,10 @@ obsidian-plugin/styles.css
 
 Each user must create their own Feishu / Lark custom app and bot. This project never ships shared credentials.
 
+Full setup guide:
+
+- [Feishu / Lark App Setup](docs/feishu-setup.md)
+
 Required scopes:
 
 ```text
@@ -75,6 +79,21 @@ im:message.group_msg
 ```
 
 The bot must be added to the target group chat. See [docs/feishu-setup.md](docs/feishu-setup.md).
+
+In the Obsidian plugin settings, fill:
+
+```text
+Feishu App ID
+Feishu App Secret
+Chat ID
+Target file
+```
+
+The target file is vault-relative, for example:
+
+```text
+Interface/飞书临时记录.md
+```
 
 ## Python CLI
 
