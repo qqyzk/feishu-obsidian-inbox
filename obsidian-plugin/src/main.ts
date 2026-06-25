@@ -3,6 +3,7 @@ import { DEFAULT_SETTINGS, DEFAULT_STATE } from "./defaults";
 import { FeishuClient } from "./feishu";
 import { renderMessages } from "./markdown";
 import { FeishuInboxSettingTab } from "./settings";
+import { FeishuSetupGuideModal } from "./setupGuide";
 import { filterNewMessages, recordSync } from "./state";
 import { FeishuInboxSettings, SyncResult, SyncState } from "./types";
 
@@ -35,6 +36,14 @@ export default class FeishuInboxPlugin extends Plugin {
       name: "Dry-run Feishu Inbox Sync",
       callback: async () => {
         await this.sync({ dryRun: true });
+      }
+    });
+
+    this.addCommand({
+      id: "show-feishu-inbox-setup-guide",
+      name: "Show Feishu Inbox Setup Guide",
+      callback: () => {
+        new FeishuSetupGuideModal(this.app).open();
       }
     });
 

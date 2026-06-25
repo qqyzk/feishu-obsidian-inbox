@@ -31,6 +31,18 @@ The app also needs the Bot feature enabled and published.
 
 Screenshots should be added after redacting personal names, app IDs, and secrets.
 
+## Screenshots
+
+Screenshots are intentionally not embedded yet. Before adding screenshots, redact:
+
+- Browser profile avatars.
+- Personal names and organization names.
+- App IDs or app IDs visible in URLs.
+- App Secret values.
+- Any group names that should remain private.
+
+The plugin also includes a built-in text setup guide in its settings page, so users can complete setup without leaving Obsidian. This document is the longer screenshot-friendly version.
+
 ## Notes From a Working Setup
 
 The following flow has been tested:

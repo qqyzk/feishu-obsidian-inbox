@@ -1,1 +1,11 @@
-/* No custom styles are needed for the MVP. */
+.feishu-inbox-guide h2 {
+  margin-top: 0;
+}
+
+.feishu-inbox-guide h3 {
+  margin-top: 1.2em;
+}
+
+.feishu-inbox-guide ol {
+  padding-left: 1.4em;
+}

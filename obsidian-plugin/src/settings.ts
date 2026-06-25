@@ -1,7 +1,6 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 import FeishuInboxPlugin from "./main";
-
-const SETUP_GUIDE_URL = "https://github.com/qqyzk/feishu-obsidian-inbox/blob/main/docs/feishu-setup.md";
+import { FeishuSetupGuideModal, SETUP_GUIDE_URL } from "./setupGuide";
 
 export class FeishuInboxSettingTab extends PluginSettingTab {
   plugin: FeishuInboxPlugin;
@@ -15,19 +14,23 @@ export class FeishuInboxSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("p", {
-      text: "Create your own Feishu / Lark custom app and bot, then fill the settings below."
-    });
-    const guide = containerEl.createEl("p");
-    guide.createEl("a", {
-      text: "Open Feishu / Lark setup guide",
-      href: SETUP_GUIDE_URL
-    });
-    const guideLink = guide.querySelector("a");
-    if (guideLink) {
-      guideLink.setAttr("target", "_blank");
-      guideLink.setAttr("rel", "noopener");
-    }
+    new Setting(containerEl)
+      .setName("Setup guide")
+      .setDesc("Create your own Feishu / Lark custom app and bot before syncing.")
+      .addButton((button) =>
+        button
+          .setButtonText("Show guide")
+          .onClick(() => {
+            new FeishuSetupGuideModal(this.app).open();
+          })
+      )
+      .addButton((button) =>
+        button
+          .setButtonText("Open screenshots")
+          .onClick(() => {
+            window.open(SETUP_GUIDE_URL);
+          })
+      );
 
     new Setting(containerEl)
       .setName("Feishu App ID")
