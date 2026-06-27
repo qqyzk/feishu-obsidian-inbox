@@ -29,11 +29,11 @@ The app also needs the Bot feature enabled and published.
 7. Add the bot to the target Feishu group.
 8. Copy the group `chat_id` into the Obsidian plugin settings.
 
-Screenshots should be added after redacting personal names, app IDs, and secrets.
+The screenshots below are cropped and redacted to avoid exposing personal names, profile avatars, app URLs, and secrets.
 
 ## Screenshots
 
-Screenshots are intentionally not embedded yet. Before adding screenshots, redact:
+Before adding or replacing screenshots, redact:
 
 - Browser profile avatars.
 - Personal names and organization names.
@@ -42,6 +42,54 @@ Screenshots are intentionally not embedded yet. Before adding screenshots, redac
 - Any group names that should remain private.
 
 The plugin also includes a built-in text setup guide in its settings page, so users can complete setup without leaving Obsidian. This document is the longer screenshot-friendly version.
+
+### Create a custom app
+
+Choose `Create Custom App`.
+
+![Create a custom app](assets/feishu-create-custom-app.png)
+
+### Add app features
+
+The app console contains feature cards such as Bot, Web app, and Docs add-on.
+
+![Add features](assets/feishu-add-features.png)
+
+### Open permissions
+
+Open `Permissions & Scopes`, then add the required Messenger permissions.
+
+![Permissions page](assets/feishu-permissions-page.png)
+
+### Add `im:chat`
+
+Choose `Obtain and update group information`.
+
+![Add chat permission](assets/feishu-chat-scope.png)
+
+### Add `im:message:readonly`
+
+Choose `Read direct messages and group chat messages`.
+
+![Add message readonly permission](assets/feishu-message-scope.png)
+
+### Add `im:message.group_msg`
+
+Choose `Read all messages in associated group chat`.
+
+![Add group message permission](assets/feishu-group-message-scope.png)
+
+### Enable Bot
+
+Add the Bot feature, then publish a new app version.
+
+![Enable bot](assets/feishu-bot-feature.png)
+
+### Publish the app version
+
+Feishu changes do not take effect until the current version is published.
+
+![Published version](assets/feishu-published-version.png)
 
 ## Notes From a Working Setup
 

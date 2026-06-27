@@ -63,6 +63,8 @@ The Feishu / Lark setup is the only slightly fussy part. The plugin includes a s
 4. Do not create a store app.
 5. Use any private name, such as `Feishu Obsidian Inbox`.
 
+![Create a custom app](docs/assets/feishu-create-custom-app.png)
+
 ### 2. Copy App Credentials
 
 In the app console, open `Credentials & Basic Info`.
@@ -109,11 +111,19 @@ need scope: im:message.group_msg
 
 add `im:message.group_msg`, then publish the app again.
 
+![Add chat permission](docs/assets/feishu-chat-scope.png)
+
+![Add message permission](docs/assets/feishu-message-scope.png)
+
+![Add group message permission](docs/assets/feishu-group-message-scope.png)
+
 ### 4. Enable Bot
 
 Open `Add Features`, then add the `Bot` feature.
 
 After changing permissions or adding the Bot feature, publish a new app version. Feishu changes do not take effect until the app is published.
+
+![Enable bot feature](docs/assets/feishu-bot-feature.png)
 
 ### 5. Add the Bot to Your Inbox Group
 
@@ -141,6 +151,8 @@ Interface/飞书临时记录.md
 ```
 
 Use `List visible chats` in the plugin settings if you need help finding the group `Chat ID`. The result is printed to the Obsidian developer console.
+
+![Published app version](docs/assets/feishu-published-version.png)
 
 ## Usage
 
