@@ -1,7 +1,7 @@
 {
   "name": "feishu-obsidian-inbox",
-  "version": "0.1.5",
-  "description": "Sync Feishu / Lark group messages into an Obsidian inbox note.",
+  "version": "0.1.6",
+  "description": "Sync Feishu / Lark group messages into an inbox note.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
