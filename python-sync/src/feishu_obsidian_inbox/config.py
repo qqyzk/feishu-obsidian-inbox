@@ -5,9 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_TARGET_FILE = (
-    "/Users/white/Documents/Obsidian Vault/Interface/飞书临时记录.md"
-)
+DEFAULT_TARGET_FILE = "~/Documents/Obsidian Vault/Inbox/Feishu Inbox.md"
 
 
 @dataclass(frozen=True)
