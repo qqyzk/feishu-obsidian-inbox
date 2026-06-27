@@ -49,7 +49,7 @@ To install a specific release manually, download these files from the latest rel
 Put them into:
 
 ```text
-<your vault>/.obsidian/plugins/feishu-obsidian-inbox/
+<your vault>/.obsidian/plugins/feishu-inbox/
 ```
 
 Restart Obsidian, then enable `Feishu Obsidian Inbox` in Community plugins.

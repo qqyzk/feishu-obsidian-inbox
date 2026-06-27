@@ -59,7 +59,7 @@ styles.css
 2. Create this folder in your vault:
 
 ```text
-.obsidian/plugins/feishu-obsidian-inbox/
+.obsidian/plugins/feishu-inbox/
 ```
 
 3. Copy these files into that folder:

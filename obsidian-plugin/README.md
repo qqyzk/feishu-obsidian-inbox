@@ -57,4 +57,4 @@ Each user should create their own Feishu / Lark custom app and bot. The plugin s
 
 ## Privacy
 
-The App Secret is stored in the plugin's local `data.json` under your vault's `.obsidian/plugins/feishu-obsidian-inbox/` folder. Do not publish or sync that file to untrusted places.
+The App Secret is stored in the plugin's local `data.json` under your vault's `.obsidian/plugins/feishu-inbox/` folder. Do not publish or sync that file to untrusted places.
