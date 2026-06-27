@@ -31,10 +31,28 @@ Each user creates their own Feishu / Lark app and bot. Do not use another person
 
 ## Install
 
+### From Obsidian
+
 1. Open Obsidian Settings.
 2. Go to `Community plugins`.
 3. Search for `Feishu Obsidian Inbox`.
 4. Install and enable the plugin.
+
+### From GitHub Release
+
+To install a specific release manually, download these files from the latest release listed at the bottom of this page:
+
+- `manifest.json`
+- `main.js`
+- `styles.css`
+
+Put them into:
+
+```text
+<your vault>/.obsidian/plugins/feishu-obsidian-inbox/
+```
+
+Restart Obsidian, then enable `Feishu Obsidian Inbox` in Community plugins.
 
 ## Feishu / Lark Setup
 
