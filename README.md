@@ -33,7 +33,7 @@ Each user creates their own Feishu / Lark app and bot. Do not use another person
 
 The plugin is not yet listed in the official Obsidian community plugin directory.
 
-For manual installation, download these files from the latest GitHub release:
+For manual installation, download these files from the latest release listed at the bottom of this page:
 
 - `manifest.json`
 - `main.js`
@@ -47,10 +47,6 @@ Put them into:
 
 Restart Obsidian, then enable `Feishu Obsidian Inbox` in Community plugins.
 
-Latest release:
-
-https://github.com/qqyzk/feishu-obsidian-inbox/releases/latest
-
 ## Feishu / Lark Setup
 
 The Feishu / Lark setup is the only slightly fussy part. The plugin includes a shorter built-in guide in its settings page.
@@ -63,7 +59,7 @@ The Feishu / Lark setup is the only slightly fussy part. The plugin includes a s
 4. Do not create a store app.
 5. Use any private name, such as `Feishu Obsidian Inbox`.
 
-![Create a custom app](docs/assets/feishu-create-custom-app.png)
+![Create a custom app](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-create-custom-app.png)
 
 ### 2. Copy App Credentials
 
@@ -111,11 +107,11 @@ need scope: im:message.group_msg
 
 add `im:message.group_msg`, then publish the app again.
 
-![Add chat permission](docs/assets/feishu-chat-scope.png)
+![Add chat permission](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-chat-scope.png)
 
-![Add message permission](docs/assets/feishu-message-scope.png)
+![Add message permission](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-message-scope.png)
 
-![Add group message permission](docs/assets/feishu-group-message-scope.png)
+![Add group message permission](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-group-message-scope.png)
 
 ### 4. Enable Bot
 
@@ -123,9 +119,9 @@ Open `Add Features`, then add the `Bot` feature.
 
 After changing permissions or adding the Bot feature, publish a new app version. Feishu changes do not take effect until the app is published.
 
-![Enable bot feature](docs/assets/feishu-bot-feature.png)
+![Enable bot feature](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-bot-feature.png)
 
-![Published app version](docs/assets/feishu-published-version.png)
+![Published app version](https://raw.githubusercontent.com/qqyzk/feishu-obsidian-inbox/main/docs/assets/feishu-published-version.png)
 
 ### 5. Add the Bot to Your Inbox Group
 
@@ -198,7 +194,9 @@ It stores:
 
 It does not ship shared credentials. Your App Secret belongs to your own Feishu / Lark app.
 
-## More Docs
+## Links
 
+- [Latest release](https://github.com/qqyzk/feishu-obsidian-inbox/releases/latest)
+- [GitHub repository](https://github.com/qqyzk/feishu-obsidian-inbox)
 - [Detailed Feishu / Lark setup notes](docs/feishu-setup.md)
 - [Project and development notes](docs/project.md)
