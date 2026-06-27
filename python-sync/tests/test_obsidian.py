@@ -19,7 +19,7 @@ class RenderMessagesTest(unittest.TestCase):
 
         self.assertIn("## 2024-06-25", markdown)
         self.assertIn("- [ ] ", markdown)
-        self.assertIn("#飞书", markdown)
+        self.assertIn("#feishu", markdown)
         self.assertIn("hello\n  world", markdown)
         self.assertIn("<!-- feishu_message_id: om_1 -->", markdown)
 

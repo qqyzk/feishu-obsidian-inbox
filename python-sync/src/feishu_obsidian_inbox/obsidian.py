@@ -28,7 +28,7 @@ def render_messages(messages: list[FeishuMessage]) -> str:
             current_date = date_text
 
         text = _indent_body(message.text or f"[{message.message_type}]")
-        lines.append(f"- [ ] {time_text} #飞书")
+        lines.append(f"- [ ] {time_text} #feishu")
         lines.append(f"  {text}")
         lines.append(f"  <!-- feishu_message_id: {message.message_id} -->")
 

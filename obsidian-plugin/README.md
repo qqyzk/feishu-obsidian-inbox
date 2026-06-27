@@ -48,7 +48,7 @@ styles.css
 - `Feishu App ID`
 - `Feishu App Secret`
 - `Chat ID`
-- `Target file`, for example `Interface/飞书临时记录.md`
+- `Target file`, for example `Inbox/Feishu Inbox.md`
 - `API base`
 - `Page size`
 - `Recent message limit`
