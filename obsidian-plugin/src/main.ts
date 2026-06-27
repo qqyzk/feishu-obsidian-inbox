@@ -1,4 +1,5 @@
 import { Notice, Plugin, TFile } from "obsidian";
+import { ChatListModal } from "./chatListModal";
 import { DEFAULT_SETTINGS, DEFAULT_STATE } from "./defaults";
 import { FeishuClient } from "./feishu";
 import { renderMessages } from "./markdown";
@@ -117,8 +118,11 @@ export default class FeishuInboxPlugin extends Plugin {
         new Notice("No chats visible to this app.");
         return;
       }
-      console.log("Feishu visible chats:", chats);
-      new Notice(`Found ${chats.length} chat(s). See developer console for IDs.`);
+      new ChatListModal(this.app, chats, async (chatId) => {
+        this.settings.chatId = chatId;
+        await this.savePluginData();
+        new Notice("Feishu Inbox: Chat ID saved.");
+      }).open();
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       new Notice(`Failed to list Feishu chats: ${message}`);
@@ -154,7 +158,21 @@ export default class FeishuInboxPlugin extends Plugin {
       return;
     }
 
+    await this.ensureParentFolders(normalizedPath);
     await this.app.vault.create(normalizedPath, content);
+  }
+
+  private async ensureParentFolders(path: string): Promise<void> {
+    const parts = path.split("/").filter(Boolean);
+    parts.pop();
+
+    let current = "";
+    for (const part of parts) {
+      current = current ? `${current}/${part}` : part;
+      if (!this.app.vault.getAbstractFileByPath(current)) {
+        await this.app.vault.createFolder(current);
+      }
+    }
   }
 
   private createClient(): FeishuClient {

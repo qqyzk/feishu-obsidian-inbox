@@ -125,7 +125,7 @@ export class FeishuInboxSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("List visible chats")
-      .setDesc("Use this after adding the bot to a group if you need to find its Chat ID.")
+      .setDesc("Use this after adding the bot to a group. Pick a chat to save its Chat ID.")
       .addButton((button) =>
         button
           .setButtonText("List chats")

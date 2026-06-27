@@ -125,6 +125,8 @@ After changing permissions or adding the Bot feature, publish a new app version.
 
 ![Enable bot feature](docs/assets/feishu-bot-feature.png)
 
+![Published app version](docs/assets/feishu-published-version.png)
+
 ### 5. Add the Bot to Your Inbox Group
 
 Open the Feishu / Lark group chat you want to use as your mobile inbox.
@@ -150,9 +152,7 @@ The `Target file` is vault-relative, for example:
 Interface/飞书临时记录.md
 ```
 
-Use `List visible chats` in the plugin settings if you need help finding the group `Chat ID`. The result is printed to the Obsidian developer console.
-
-![Published app version](docs/assets/feishu-published-version.png)
+Use `List visible chats` in the plugin settings if you need help finding the group `Chat ID`. Pick the target group from the list and the plugin will save the Chat ID.
 
 ## Usage
 
