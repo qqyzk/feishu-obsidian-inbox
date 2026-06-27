@@ -51,7 +51,7 @@ export class FeishuSetupGuideModal extends Modal {
 
     createSection(contentEl, "6. Fill plugin settings", [
       "Fill Feishu App ID, Feishu App Secret, Chat ID, and Target file.",
-      "The target file is vault-relative, for example Interface/飞书临时记录.md.",
+      "The target file is vault-relative, for example Inbox/Feishu Inbox.md.",
       "Use List visible chats if you need help finding the Chat ID."
     ]);
 

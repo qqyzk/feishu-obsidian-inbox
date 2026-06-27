@@ -131,7 +131,7 @@ Target file
 `Target file` is vault-relative, for example:
 
 ```text
-Interface/飞书临时记录.md
+Inbox/Feishu Inbox.md
 ```
 
 The plugin writes only to this target file and stores sync state in local plugin data.

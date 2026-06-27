@@ -22,7 +22,7 @@ export function renderMessages(messages: FeishuMessage[]): string {
       currentDate = dateText;
     }
 
-    lines.push(`- [ ] ${timeText} #飞书`);
+    lines.push(`- [ ] ${timeText} #feishu`);
     lines.push(`  ${indentBody(message.text || `[${message.messageType}]`)}`);
     lines.push(`  <!-- feishu_message_id: ${message.messageId} -->`);
   }

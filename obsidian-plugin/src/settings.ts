@@ -77,7 +77,7 @@ export class FeishuInboxSettingTab extends PluginSettingTab {
       .setDesc("Vault-relative Markdown file to append synced records to.")
       .addText((text) =>
         text
-          .setPlaceholder("Interface/飞书临时记录.md")
+          .setPlaceholder("Inbox/Feishu Inbox.md")
           .setValue(this.plugin.settings.targetFile)
           .onChange(async (value) => {
             this.plugin.settings.targetFile = value.trim();

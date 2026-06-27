@@ -13,7 +13,7 @@ Phone → Feishu / Lark group → Obsidian inbox note
 - Manual sync from the Obsidian ribbon.
 - Command palette command: `Sync Feishu Inbox`.
 - Built-in setup guide in plugin settings.
-- Writes to a vault-relative Markdown file, such as `Interface/飞书临时记录.md`.
+- Writes to a vault-relative Markdown file, such as `Inbox/Feishu Inbox.md`.
 - Keeps bounded local sync state to avoid duplicate imports.
 - Filters system messages such as group creation and bot invitation events.
 - Uses each user's own Feishu / Lark custom app. No shared credentials are included.
@@ -149,7 +149,7 @@ The `Chat ID` usually starts with `oc_`.
 The `Target file` is vault-relative, for example:
 
 ```text
-Interface/飞书临时记录.md
+Inbox/Feishu Inbox.md
 ```
 
 Use `List visible chats` in the plugin settings if you need help finding the group `Chat ID`. Pick the target group from the list and the plugin will save the Chat ID.
@@ -168,7 +168,7 @@ Synced messages are appended like this:
 ```markdown
 ## 2026-06-25
 
-- [ ] 16:31 #飞书
+- [ ] 16:31 #feishu
   This is a temporary note
   <!-- feishu_message_id: om_xxx -->
 ```
