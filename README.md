@@ -2,75 +2,90 @@
 
 Sync quick notes from a Feishu / Lark group chat into an Obsidian inbox note.
 
-The intended workflow is simple:
+Use Feishu / Lark on your phone as a lightweight capture inbox, then click one button in Obsidian to pull new messages into a local Markdown file.
 
 ```text
-iPhone sends temporary notes to a Feishu / Lark group
-→ Obsidian plugin or Python CLI fetches new messages
-→ New records are appended to an Obsidian Markdown file
-→ Obsidian / AI tools can triage the inbox later
+Phone → Feishu / Lark group → Obsidian inbox note
 ```
 
-## Status
+## Features
 
-This repository currently contains two implementations:
-
-```text
-obsidian-plugin/   TypeScript Obsidian plugin MVP
-python-sync/       Working Python CLI reference implementation
-docs/              Feishu / Lark setup notes
-```
-
-The Python version has been tested end to end. The Obsidian plugin MVP has also been built and tested locally, but it is not yet listed in the official Obsidian community plugin directory.
-
-## Obsidian Plugin
-
-Features:
-
-- Manual sync from a ribbon icon.
+- Manual sync from the Obsidian ribbon.
 - Command palette command: `Sync Feishu Inbox`.
-- Dry-run command: `Dry-run Feishu Inbox Sync`.
-- Settings page for Feishu / Lark credentials, chat ID, target file, and sync retention.
-- Direct Feishu / Lark Open Platform API calls. Python is not required.
-- Duplicate prevention with bounded local state.
-- System messages are filtered by default.
+- Built-in setup guide in plugin settings.
+- Writes to a vault-relative Markdown file, such as `Interface/飞书临时记录.md`.
+- Keeps bounded local sync state to avoid duplicate imports.
+- Filters system messages such as group creation and bot invitation events.
+- Uses each user's own Feishu / Lark custom app. No shared credentials are included.
 
-Build:
+## Before You Start
 
-```bash
-cd obsidian-plugin
-npm install
-npm run build
-```
+You need:
 
-Manual installation for testing:
+- An Obsidian vault.
+- A Feishu / Lark account.
+- Permission to create a Feishu / Lark custom app.
+- A Feishu / Lark group chat used as your mobile inbox.
 
-1. Build the plugin.
-2. Create this folder in your vault:
+Each user creates their own Feishu / Lark app and bot. Do not use another person's App ID or App Secret.
+
+## Install
+
+The plugin is not yet listed in the official Obsidian community plugin directory.
+
+For manual installation, download these files from the latest GitHub release:
+
+- `manifest.json`
+- `main.js`
+- `styles.css`
+
+Put them into:
 
 ```text
-.obsidian/plugins/feishu-obsidian-inbox/
+<your vault>/.obsidian/plugins/feishu-obsidian-inbox/
 ```
 
-3. Copy these files into that folder:
+Restart Obsidian, then enable `Feishu Obsidian Inbox` in Community plugins.
 
-```text
-obsidian-plugin/manifest.json
-obsidian-plugin/main.js
-obsidian-plugin/styles.css
-```
+Latest release:
 
-4. Restart Obsidian and enable `Feishu Obsidian Inbox` in Community plugins.
+https://github.com/qqyzk/feishu-obsidian-inbox/releases/latest
 
 ## Feishu / Lark Setup
 
-Each user must create their own Feishu / Lark custom app and bot. This project never ships shared credentials.
+The Feishu / Lark setup is the only slightly fussy part. The plugin includes a shorter built-in guide in its settings page.
 
-Full setup guide:
+### 1. Create a Custom App
 
-- [Feishu / Lark App Setup](docs/feishu-setup.md)
+1. Open Feishu Open Platform.
+2. Open Developer Console.
+3. Create a Custom App.
+4. Do not create a store app.
+5. Use any private name, such as `Feishu Obsidian Inbox`.
 
-Required scopes:
+### 2. Copy App Credentials
+
+In the app console, open `Credentials & Basic Info`.
+
+Copy:
+
+```text
+App ID
+App Secret
+```
+
+Paste them into the Obsidian plugin settings:
+
+```text
+Feishu App ID
+Feishu App Secret
+```
+
+The App Secret is stored locally in your vault's plugin data. Do not publish your vault's `.obsidian` configuration if it contains secrets.
+
+### 3. Add Permissions
+
+Open `Permissions & Scopes`, then add these tenant token scopes:
 
 ```text
 im:chat
@@ -78,9 +93,37 @@ im:message:readonly
 im:message.group_msg
 ```
 
-The bot must be added to the target group chat. See [docs/feishu-setup.md](docs/feishu-setup.md).
+In the Feishu UI, these may appear as:
 
-In the Obsidian plugin settings, fill:
+```text
+Obtain and update group information
+Read direct messages and group chat messages
+Read all messages in associated group chat
+```
+
+If Feishu reports this error:
+
+```text
+need scope: im:message.group_msg
+```
+
+add `im:message.group_msg`, then publish the app again.
+
+### 4. Enable Bot
+
+Open `Add Features`, then add the `Bot` feature.
+
+After changing permissions or adding the Bot feature, publish a new app version. Feishu changes do not take effect until the app is published.
+
+### 5. Add the Bot to Your Inbox Group
+
+Open the Feishu / Lark group chat you want to use as your mobile inbox.
+
+In group settings, add the bot/app you created.
+
+### 6. Fill Plugin Settings
+
+In Obsidian, open the plugin settings and fill:
 
 ```text
 Feishu App ID
@@ -89,63 +132,61 @@ Chat ID
 Target file
 ```
 
-The target file is vault-relative, for example:
+The `Chat ID` usually starts with `oc_`.
+
+The `Target file` is vault-relative, for example:
 
 ```text
 Interface/飞书临时记录.md
 ```
 
-## Python CLI
+Use `List visible chats` in the plugin settings if you need help finding the group `Chat ID`. The result is printed to the Obsidian developer console.
 
-The Python implementation is kept as a working reference and fallback.
+## Usage
 
-Configure it from the example file:
+Send a message to your Feishu / Lark inbox group from your phone.
 
-```bash
-cd python-sync
-cp .env.example .env
+Then in Obsidian:
+
+- Click the inbox ribbon icon, or
+- Run `Sync Feishu Inbox` from the command palette.
+
+Synced messages are appended like this:
+
+```markdown
+## 2026-06-25
+
+- [ ] 16:31 #飞书
+  This is a temporary note
+  <!-- feishu_message_id: om_xxx -->
 ```
 
-Then fill:
+## Troubleshooting
 
-```env
-FEISHU_APP_ID=
-FEISHU_APP_SECRET=
-FEISHU_CHAT_ID=
-OBSIDIAN_TARGET_FILE=
-```
+`No chats visible to this app.`
 
-Run a dry-run:
+The bot probably has not been added to the target group, or the app version containing the Bot feature has not been published.
 
-```bash
-PYTHONPATH=src python3 -m feishu_obsidian_inbox sync --dry-run
-```
+`need scope: im:message.group_msg`
 
-Run a real sync:
+Add the `im:message.group_msg` scope in Feishu Open Platform and publish a new app version.
 
-```bash
-PYTHONPATH=src python3 -m feishu_obsidian_inbox sync
-```
+`Missing settings`
+
+Open the plugin settings and fill App ID, App Secret, Chat ID, and Target file.
 
 ## Privacy
 
-Secrets are local configuration and must not be committed:
+This plugin talks directly to Feishu / Lark Open Platform from your Obsidian app.
 
-- `python-sync/.env`
-- Obsidian plugin `data.json`
+It stores:
 
-The repository includes `.env.example` so other users can reproduce the setup without exposing private credentials.
+- Your plugin settings in local Obsidian plugin data.
+- Recent message IDs and the latest processed timestamp for duplicate prevention.
 
-The sync state stores only bounded metadata such as recent message IDs and the latest processed message timestamp.
+It does not ship shared credentials. Your App Secret belongs to your own Feishu / Lark app.
 
-## Release Notes
+## More Docs
 
-For a beta release, upload the built Obsidian plugin assets:
-
-```text
-manifest.json
-main.js
-styles.css
-```
-
-Official Obsidian community plugin submission should happen after the plugin has had some beta testing.
+- [Detailed Feishu / Lark setup notes](docs/feishu-setup.md)
+- [Project and development notes](docs/project.md)
