@@ -1,4 +1,4 @@
-# Feishu Obsidian Inbox Python Sync
+# Feishu Inbox Python Sync
 
 This is the first working Python CLI implementation. It is kept as a reference implementation and fallback for the Obsidian plugin.
 

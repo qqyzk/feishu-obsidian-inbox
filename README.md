@@ -1,4 +1,4 @@
-# Feishu Obsidian Inbox
+# Feishu Inbox
 
 Sync quick notes from a Feishu / Lark group chat into an Obsidian inbox note.
 
@@ -35,7 +35,7 @@ Each user creates their own Feishu / Lark app and bot. Do not use another person
 
 1. Open Obsidian Settings.
 2. Go to `Community plugins`.
-3. Search for `Feishu Obsidian Inbox`.
+3. Search for `Feishu Inbox`.
 4. Install and enable the plugin.
 
 ### From GitHub Release
@@ -52,7 +52,7 @@ Put them into:
 <your vault>/.obsidian/plugins/feishu-inbox/
 ```
 
-Restart Obsidian, then enable `Feishu Obsidian Inbox` in Community plugins.
+Restart Obsidian, then enable `Feishu Inbox` in Community plugins.
 
 ## Feishu / Lark Setup
 
@@ -64,7 +64,7 @@ The Feishu / Lark setup is the only slightly fussy part. The plugin includes a s
 2. Open Developer Console.
 3. Create a Custom App.
 4. Do not create a store app.
-5. Use any private name, such as `Feishu Obsidian Inbox`.
+5. Use any private name, such as `Feishu Inbox`.
 
 ![Create a custom app](docs/assets/feishu-create-custom-app.png)
 

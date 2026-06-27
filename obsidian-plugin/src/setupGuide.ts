@@ -21,7 +21,7 @@ export class FeishuSetupGuideModal extends Modal {
       "Open Feishu Open Platform.",
       "Go to Developer Console.",
       "Create a Custom App. Do not choose a store app.",
-      "Use any private name, for example Feishu Obsidian Inbox."
+      "Use any private name, for example Feishu Inbox."
     ]);
 
     createSection(contentEl, "2. Copy app credentials", [

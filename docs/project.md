@@ -70,7 +70,7 @@ obsidian-plugin/main.js
 obsidian-plugin/styles.css
 ```
 
-4. Restart Obsidian and enable `Feishu Obsidian Inbox` in Community plugins.
+4. Restart Obsidian and enable `Feishu Inbox` in Community plugins.
 
 ## Python CLI
 
